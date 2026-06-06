@@ -50,18 +50,27 @@ export default {
 </script>
 
 <template>
-  <div class="d-flex container align-items-center flex-column">
-    <b-form-input v-model="busca" class="w-50 mb-3" placeholder="Busque pelo nome do produto" />
-    <b-row>
-      <b-col class="mb-3" v-for="produto in produtosFiltrados" :key="produto.id">
-        <ProdutoCard :produto="produto"></ProdutoCard>
-      </b-col>
+  <div class="app-container">
+    <div class="d-flex container align-items-center flex-column">
+      <b-form-input v-model="busca" class="w-50 mb-3" placeholder="Busque pelo nome do produto" />
+      <b-row>
+        <b-col class="mb-3" v-for="produto in produtosFiltrados" :key="produto.id">
+          <ProdutoCard :produto="produto"></ProdutoCard>
+        </b-col>
+      </b-row>
       <b-pagination
         class="mt-3"
         v-model="pagina_atual"
         :total-rows="total_produtos"
         :per-page="limit"
       />
-    </b-row>
+    </div>
   </div>
 </template>
+
+<style scoped>
+.app-container {
+  height: 100%;
+  background-color: #4C279B;
+}
+</style>
