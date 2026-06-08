@@ -24,6 +24,9 @@ export default {
     },
   },
   methods: {
+    preco() {
+      return this.produto.price
+    },
     async buscarDetalhes() {
       try {
         const resposta = await axios.get(`https://dummyjson.com/products/${this.id}`)
@@ -37,18 +40,38 @@ export default {
 </script>
 
 <template>
-  <div class="container d-flex flex-column text-center">
-    <b-card v-if="produto">
-      <h3>{{ capitalizar }}</h3>
-      <b-img class="img-produto mb-3" :src="pegarImagem" />
-      <p><b>preço: R$</b>{{ produto.price }}</p>
-      <p><b>Descrição: </b>{{ produto.description }}</p>
-      <b-button variant="secondary" class="mt-2" @click="$router.back()"> Voltar </b-button>
-    </b-card>
-  </div>
+
+    <div
+      v-if="produto"
+      class="container d-flex flex-column text-center card"
+      style="max-width: 900px"
+    >
+      <div class="row g-0">
+        <div class="col-md-4">
+          <img :src="pegarImagem" class="img-fluid rounded-start" alt="imagem-produto" />
+        </div>
+
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title fw-bold fs-2">{{ capitalizar }}</h5>
+            <p class="card-text fw-semibold fs-5">{{ produto.description }}</p>
+            <p class="card-text fw-bold fs-5">
+              <small class="text-body-secondary"><b>Preço: R$ </b>{{ preco() }}</small>
+            </p>
+          </div>
+        </div>
+      </div>
+      <b-button variant="primary" class="mt-2"> Adicionar ao Carrinho </b-button>
+      <b-button variant="success" class="mt-2"> Comprar </b-button>
+      <b-button variant="secondary" class="mt-2 mb-2" @click="$router.back()"> Voltar </b-button>
+    </div>
+
 </template>
 <style>
 .img-produto {
   width: 200px;
+}
+.card{
+  margin: 10px;
 }
 </style>

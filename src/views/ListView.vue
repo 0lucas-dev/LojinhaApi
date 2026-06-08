@@ -11,7 +11,7 @@ export default {
     return {
       produtos: [],
       total_produtos: 0,
-      limit: 20,
+      limit: 21,
       pagina_atual: 1,
       offset: 0,
       busca: '',
@@ -50,8 +50,7 @@ export default {
 </script>
 
 <template>
-  <div class="app-container">
-    <div class="d-flex container align-items-center flex-column">
+    <div class="d-flex container align-items-center flex-column mt-3">
       <b-form-input v-model="busca" class="w-50 mb-3" placeholder="Busque pelo nome do produto" />
       <b-row>
         <b-col class="mb-3" v-for="produto in produtosFiltrados" :key="produto.id">
@@ -65,12 +64,8 @@ export default {
         :per-page="limit"
       />
     </div>
-  </div>
 </template>
 
 <style scoped>
-.app-container {
-  height: 100%;
-  background-color: #4C279B;
-}
+
 </style>
